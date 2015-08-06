@@ -1,0 +1,20 @@
+﻿生成启动时间为 2015/8/6 9:26:57。
+     1>项目“C:\Users\huipu\Documents\Visual Studio 2013\Projects\C++ Study\HttpAnalysis\HttpAnalysis\HttpAnalysis.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\ToolesDocument\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\HttpAnalysis.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt HttpAnalysis.cpp HttpAnalysisDlg.cpp
+         正在跳过...(未检测到相关更改)
+         HttpAnalysisDlg.cpp
+         HttpAnalysis.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /l"0x0804" /IDebug\ /nologo /fo"Debug\HttpAnalysis.res" HttpAnalysis.rc 
+       Link:
+         D:\ToolesDocument\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\huipu\Documents\Visual Studio 2013\Projects\C++ Study\HttpAnalysis\Debug\HttpAnalysis.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"D:\ToolesDocument\Microsoft Visual Studio 12.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"C:\Users\huipu\Documents\Visual Studio 2013\Projects\C++ Study\HttpAnalysis\Debug\HttpAnalysis.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\huipu\Documents\Visual Studio 2013\Projects\C++ Study\HttpAnalysis\Debug\HttpAnalysis.lib" /MACHINE:X86 Debug\HttpAnalysis.res
+         Debug\HttpAnalysis.obj
+         Debug\HttpAnalysisDlg.obj
+         Debug\stdafx.obj
+         HttpAnalysis.vcxproj -> C:\Users\huipu\Documents\Visual Studio 2013\Projects\C++ Study\HttpAnalysis\Debug\HttpAnalysis.exe
+     1>已完成生成项目“C:\Users\huipu\Documents\Visual Studio 2013\Projects\C++ Study\HttpAnalysis\HttpAnalysis\HttpAnalysis.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.97
