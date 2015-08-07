@@ -34,7 +34,6 @@ CHttpAnalysisApp::CHttpAnalysisApp()
 
 CHttpAnalysisApp theApp;
 
-
 // CHttpAnalysisApp ≥ı ºªØ
 
 BOOL CHttpAnalysisApp::InitInstance()
