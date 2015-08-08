@@ -33,4 +33,6 @@ protected:
 public:
 	// Tab 控件
 	CTabCtrl TabContent;
+	// Tab控件初始化代码
+	bool InitTabControl();
 };

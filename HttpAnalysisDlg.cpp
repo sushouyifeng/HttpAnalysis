@@ -98,6 +98,7 @@ BOOL CHttpAnalysisDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO:  在此添加额外的初始化代码
+	//初始化TabControl 页面内容
 	InitTabControl();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -153,8 +154,13 @@ HCURSOR CHttpAnalysisDlg::OnQueryDragIcon()
 }
 
 
-
-// Tab控件初始化代码
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：Tab控件初始化代码
+ * 参数说明：无参数
+ * 注意事项：
+ * 修改日期：2015/08/08 21:21:00
+ ***********************************************************************************************************/
 bool CHttpAnalysisDlg::InitTabControl()
 {
 	return false;
