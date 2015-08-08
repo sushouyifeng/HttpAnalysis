@@ -56,6 +56,7 @@ CHttpAnalysisDlg::CHttpAnalysisDlg(CWnd* pParent /*=NULL*/)
 void CHttpAnalysisDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_Tab_Content, TabContent);
 }
 
 BEGIN_MESSAGE_MAP(CHttpAnalysisDlg, CDialogEx)
@@ -97,6 +98,7 @@ BOOL CHttpAnalysisDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO:  在此添加额外的初始化代码
+	InitTabControl();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -150,3 +152,10 @@ HCURSOR CHttpAnalysisDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+// Tab控件初始化代码
+bool CHttpAnalysisDlg::InitTabControl()
+{
+	return false;
+}
