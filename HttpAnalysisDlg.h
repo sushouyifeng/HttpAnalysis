@@ -4,7 +4,9 @@
 
 #pragma once
 #include "afxcmn.h"
-
+#include "TabHtmlHead.h"
+#include "TabHtmlBody.h"
+#include "TabHtmlGet.h"
 
 // CHttpAnalysisDlg 对话框
 class CHttpAnalysisDlg : public CDialogEx
@@ -35,4 +37,9 @@ public:
 	CTabCtrl TabContent;
 	// Tab控件初始化代码
 	bool InitTabControl();
+	CTabHtmlHead tabHtmlHead;
+	CTabHtmlBody tabHtmlBody;
+	CTabHtmlGet tabHtmlGet;
+	void MoveSubTab();
+	afx_msg void OnTcnSelchangeTabContent(NMHDR *pNMHDR, LRESULT *pResult);
 };

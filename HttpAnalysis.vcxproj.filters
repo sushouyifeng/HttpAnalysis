@@ -33,6 +33,15 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="TabHtmlHead.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TabHtmlBody.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TabHtmlGet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HttpAnalysis.cpp">
@@ -42,6 +51,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TabHtmlHead.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TabHtmlBody.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TabHtmlGet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

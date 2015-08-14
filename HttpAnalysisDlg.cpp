@@ -7,6 +7,7 @@
 #include "HttpAnalysisDlg.h"
 #include "afxdialogex.h"
 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -19,13 +20,13 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// 对话框数据
+	// 对话框数据
 	enum { IDD = IDD_ABOUTBOX };
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
-// 实现
+	// 实现
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -63,6 +64,7 @@ BEGIN_MESSAGE_MAP(CHttpAnalysisDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_NOTIFY(TCN_SELCHANGE, IDC_Tab_Content, &CHttpAnalysisDlg::OnTcnSelchangeTabContent)
 END_MESSAGE_MAP()
 
 
@@ -163,5 +165,89 @@ HCURSOR CHttpAnalysisDlg::OnQueryDragIcon()
  ***********************************************************************************************************/
 bool CHttpAnalysisDlg::InitTabControl()
 {
+	TabContent.InsertItem(0, L"HTML 头");
+	TabContent.InsertItem(1, L"HTML 内容");
+	TabContent.InsertItem(2, L"提取内容");
+
+	tabHtmlHead.Create(IDD_TAB_HTML_Head, GetDlgItem(IDC_Tab_Content));
+	tabHtmlBody.Create(IDD_TAB_HTML_Body, GetDlgItem(IDC_Tab_Content));
+	tabHtmlGet.Create(IDD_TAB_HTML_Get, GetDlgItem(IDC_Tab_Content));
+
+	MoveSubTab();
+
+	//分别设置显示和隐藏
+	tabHtmlHead.ShowWindow(true);
+	tabHtmlBody.ShowWindow(false);
+	tabHtmlGet.ShowWindow(false);
+
+	//设置默认选项卡
+	TabContent.SetCurSel(0);
 	return false;
+}
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：移动每一个Tab页面到合适的位置
+ * 参数说明：
+ * 注意事项：此变量仅仅是为了避免程序一开始启动发送OnSize事件时候调用，因为这时Tab控件里的各窗口还没建立好
+ * 修改日期：2015/08/14
+ ***********************************************************************************************************/
+void CHttpAnalysisDlg::MoveSubTab()
+{
+	static bool isFirstTime = true;
+	if (isFirstTime)
+	{
+		CRect  rs;
+		TabContent.GetClientRect(&rs);
+
+		//调整子对话框在父窗口中的位置
+		rs.top += 30;
+		rs.bottom -= 10;
+		rs.left += 10;
+		rs.right -= 10;
+
+		//设置子对话框尺寸并移动到指定的位置
+		tabHtmlHead.MoveWindow(&rs);
+		tabHtmlBody.MoveWindow(&rs);
+		tabHtmlGet.MoveWindow(&rs);
+	}
+	isFirstTime = false;
+}
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：实现Tab控件页面的切换
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+void CHttpAnalysisDlg::OnTcnSelchangeTabContent(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	// TODO:  在此添加控件通知处理程序代码
+	int tabSelectIndex = TabContent.GetCurSel();
+	switch (tabSelectIndex)
+	{
+	case 0:
+		tabHtmlHead.ShowWindow(true);
+		tabHtmlBody.ShowWindow(false);
+		tabHtmlGet.ShowWindow(false);
+		break;
+
+	case 1:
+		tabHtmlHead.ShowWindow(false);
+		tabHtmlBody.ShowWindow(true);
+		tabHtmlGet.ShowWindow(false);
+		break;
+
+	case 2:
+		tabHtmlHead.ShowWindow(false);
+		tabHtmlBody.ShowWindow(false);
+		tabHtmlGet.ShowWindow(true);
+		break;
+	default:
+		break;
+	}
+	*pResult = 0;
 }
