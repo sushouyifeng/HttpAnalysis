@@ -48,4 +48,7 @@ public:
 	afx_msg void OnBnClickedBtnStart();
 	CEdit edtURL;
 	CProgressCtrl processUrl;
+	void processData(CString data);
+	static bool HtmlRequestProgress(double progress);
+    static CHttpAnalysisDlg* pThis;
 };

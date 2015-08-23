@@ -48,11 +48,23 @@ END_MESSAGE_MAP()
 // CHttpAnalysisDlg 对话框
 
 
+/***********************************************************************************************************
+ * 获取或者设置一个值  初始化静态指针  不然编译的时候要出错
+ ***********************************************************************************************************/
+CHttpAnalysisDlg* CHttpAnalysisDlg::pThis = NULL;	
 
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：构造对话框
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
 CHttpAnalysisDlg::CHttpAnalysisDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CHttpAnalysisDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	pThis = this;
 }
 
 void CHttpAnalysisDlg::DoDataExchange(CDataExchange* pDX)
@@ -68,7 +80,6 @@ BEGIN_MESSAGE_MAP(CHttpAnalysisDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_Tab_Content, &CHttpAnalysisDlg::OnTcnSelchangeTabContent)
-	//	ON_BN_CLICKED(IDC_Btn_Start, &CHttpAnalysisDlg::OnBnClickedBtnStart)
 	ON_BN_CLICKED(IDC_Btn_Start, &CHttpAnalysisDlg::OnBnClickedBtnStart)
 END_MESSAGE_MAP()
 
@@ -108,6 +119,7 @@ BOOL CHttpAnalysisDlg::OnInitDialog()
 	//初始化TabControl 页面内容
 	InitTabControl();
 
+	edtURL.SetWindowTextW(L"http://www.5566.net");
 	processUrl.SetRange(0, 100);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -274,7 +286,7 @@ bool CHttpAnalysisDlg::ProcessHttpRequest()
 	CString url;
 	edtURL.GetWindowTextW(url);
 	// 构造Http客户端，发起请求
-	WinHttpClient client(url.GetBuffer());
+	WinHttpClient client(url.GetBuffer(), &CHttpAnalysisDlg::HtmlRequestProgress);
 	client.SendHttpRequest();
 
 	//收集服务器返回的Http头和内容
@@ -299,4 +311,32 @@ bool CHttpAnalysisDlg::ProcessHttpRequest()
 void CHttpAnalysisDlg::OnBnClickedBtnStart()
 {
 	ProcessHttpRequest();
+}
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+void CHttpAnalysisDlg::processData(CString data)
+{
+}
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：URL分析回调函数
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+bool CHttpAnalysisDlg::HtmlRequestProgress(double progress)
+{
+	pThis->processUrl.SetPos(static_cast<int>(progress));
+	return true;
 }
