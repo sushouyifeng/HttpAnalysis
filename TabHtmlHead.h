@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CTabHtmlHead 对话框
@@ -18,4 +19,6 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CEdit edtHtmlHead;
 };

@@ -24,6 +24,7 @@ CTabHtmlBody::~CTabHtmlBody()
 void CTabHtmlBody::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT_Body, edtHtmlBody);
 }
 
 

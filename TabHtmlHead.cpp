@@ -24,6 +24,7 @@ CTabHtmlHead::~CTabHtmlHead()
 void CTabHtmlHead::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT1, edtHtmlHead);
 }
 
 

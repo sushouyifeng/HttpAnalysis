@@ -7,6 +7,8 @@
 #include "TabHtmlHead.h"
 #include "TabHtmlBody.h"
 #include "TabHtmlGet.h"
+#include "ThirdParty\ATLRegExp\WinHttpClient.h"
+#include "afxwin.h"
 
 // CHttpAnalysisDlg ¶Ô»°¿ò
 class CHttpAnalysisDlg : public CDialogEx
@@ -42,4 +44,8 @@ public:
 	CTabHtmlGet tabHtmlGet;
 	void MoveSubTab();
 	afx_msg void OnTcnSelchangeTabContent(NMHDR *pNMHDR, LRESULT *pResult);
+	bool ProcessHttpRequest();
+	afx_msg void OnBnClickedBtnStart();
+	CEdit edtURL;
+	CProgressCtrl processUrl;
 };

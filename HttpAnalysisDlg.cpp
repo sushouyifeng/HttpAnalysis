@@ -6,6 +6,7 @@
 #include "HttpAnalysis.h"
 #include "HttpAnalysisDlg.h"
 #include "afxdialogex.h"
+#include "winhttp.h"
 
 
 #ifdef _DEBUG
@@ -58,6 +59,8 @@ void CHttpAnalysisDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_Tab_Content, TabContent);
+	DDX_Control(pDX, IDC_Edit_Url, edtURL);
+	DDX_Control(pDX, IDC_Pro_Analysis, processUrl);
 }
 
 BEGIN_MESSAGE_MAP(CHttpAnalysisDlg, CDialogEx)
@@ -65,6 +68,8 @@ BEGIN_MESSAGE_MAP(CHttpAnalysisDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_Tab_Content, &CHttpAnalysisDlg::OnTcnSelchangeTabContent)
+	//	ON_BN_CLICKED(IDC_Btn_Start, &CHttpAnalysisDlg::OnBnClickedBtnStart)
+	ON_BN_CLICKED(IDC_Btn_Start, &CHttpAnalysisDlg::OnBnClickedBtnStart)
 END_MESSAGE_MAP()
 
 
@@ -102,6 +107,8 @@ BOOL CHttpAnalysisDlg::OnInitDialog()
 	// TODO:  在此添加额外的初始化代码
 	//初始化TabControl 页面内容
 	InitTabControl();
+
+	processUrl.SetRange(0, 100);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -250,4 +257,46 @@ void CHttpAnalysisDlg::OnTcnSelchangeTabContent(NMHDR *pNMHDR, LRESULT *pResult)
 		break;
 	}
 	*pResult = 0;
+}
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：获取URL地址，请求地址，返回HTML头和内容
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+bool CHttpAnalysisDlg::ProcessHttpRequest()
+{
+	// 获取需要请求的URL地址
+	CString url;
+	edtURL.GetWindowTextW(url);
+	// 构造Http客户端，发起请求
+	WinHttpClient client(url.GetBuffer());
+	client.SendHttpRequest();
+
+	//收集服务器返回的Http头和内容
+	wstring httpResponseHeader = client.GetResponseHeader();
+	wstring httpResponseContent = client.GetResponseContent();
+
+	//把Http头和内容显示在Tab标签页的文本框中
+	tabHtmlHead.edtHtmlHead.SetWindowTextW(httpResponseHeader.c_str());
+	tabHtmlBody.edtHtmlBody.SetWindowTextW(httpResponseContent.c_str());
+	return false;
+}
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：开始分析按钮
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+void CHttpAnalysisDlg::OnBnClickedBtnStart()
+{
+	ProcessHttpRequest();
 }
