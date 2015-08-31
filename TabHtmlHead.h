@@ -21,4 +21,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CEdit edtHtmlHead;
+	afx_msg void OnBnClickedbtnheadclear();
+	afx_msg void OnBnClickedbtnheadcopy();
+	afx_msg void OnBnClickedbtnheadsave();
 };

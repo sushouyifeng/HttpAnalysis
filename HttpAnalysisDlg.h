@@ -51,4 +51,7 @@ public:
 	void processData(CString data);
 	static bool HtmlRequestProgress(double progress);
     static CHttpAnalysisDlg* pThis;
+	afx_msg void OnBnClickedBtnPaste();
+	afx_msg void OnBnClickedBtnClear();
+	afx_msg void OnBnClickedCheckTop();
 };

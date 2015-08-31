@@ -1,5 +1,6 @@
 #pragma once
 #include "afxwin.h"
+#include "afxcmn.h"
 
 
 // CTabHtmlBody ¶Ô»°¿ò
@@ -20,5 +21,15 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CEdit edtHtmlBody;
+	CRichEditCtrl edtHtmlBody;
+	afx_msg void OnBnClickedbtnbodyclear();
+	afx_msg void OnBnClickedbtnbodycopy();
+	afx_msg void OnBnClickedbtnbodysave();
+	afx_msg void OnBnClickedbtnBodysearch();
+	afx_msg void OnBnClickedbtnbodyget();
+	virtual BOOL OnInitDialog();
+	void InitRichEdit();
+	CEdit edtSearch;
+	void FindTextHtml();
+	void ColorMarkSearch(long start, long end);
 };

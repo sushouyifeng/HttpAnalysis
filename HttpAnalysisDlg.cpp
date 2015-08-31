@@ -81,6 +81,9 @@ BEGIN_MESSAGE_MAP(CHttpAnalysisDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_Tab_Content, &CHttpAnalysisDlg::OnTcnSelchangeTabContent)
 	ON_BN_CLICKED(IDC_Btn_Start, &CHttpAnalysisDlg::OnBnClickedBtnStart)
+	ON_BN_CLICKED(IDC_Btn_Paste, &CHttpAnalysisDlg::OnBnClickedBtnPaste)
+	ON_BN_CLICKED(IDC_Btn_Clear, &CHttpAnalysisDlg::OnBnClickedBtnClear)
+	ON_BN_CLICKED(IDC_CHECK_Top, &CHttpAnalysisDlg::OnBnClickedCheckTop)
 END_MESSAGE_MAP()
 
 
@@ -340,3 +343,49 @@ bool CHttpAnalysisDlg::HtmlRequestProgress(double progress)
 	pThis->processUrl.SetPos(static_cast<int>(progress));
 	return true;
 }
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：实现URL内容的粘贴
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+ void CHttpAnalysisDlg::OnBnClickedBtnPaste()
+ {
+	 // TODO:  在此添加控件通知处理程序代码
+	 edtURL.SetWindowTextW(L"");
+	 edtURL.Paste();
+ }
+
+
+
+ /***********************************************************************************************************
+  * 程序作者：赵进军
+  * 函数功能：实现URL内容的清除
+  * 参数说明：
+  * 注意事项：
+  * 修改日期：
+  ***********************************************************************************************************/
+ void CHttpAnalysisDlg::OnBnClickedBtnClear()
+ {
+	 // TODO:  在此添加控件通知处理程序代码
+	 edtURL.SetWindowTextW(L"");
+ }
+
+
+
+ /***********************************************************************************************************
+  * 程序作者：赵进军
+  * 函数功能：
+  * 参数说明：
+  * 注意事项：
+  * 修改日期：
+  ***********************************************************************************************************/
+ void CHttpAnalysisDlg::OnBnClickedCheckTop()
+ {
+	 // TODO:  在此添加控件通知处理程序代码
+	 
+ }
