@@ -13,7 +13,7 @@ public:
 	CTabHtmlBody(CWnd* pParent = NULL);   // 标准构造函数
 	virtual ~CTabHtmlBody();
 
-// 对话框数据
+	// 对话框数据
 	enum { IDD = IDD_TAB_HTML_Body };
 
 protected:
@@ -33,4 +33,6 @@ public:
 	void FindTextHtml();
 	void ColorMarkSearch(long start, long end);
 	void ClearTextMark();
+	static long SubEditProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+	static	void ShowLineNum(HWND hEdit);
 };
