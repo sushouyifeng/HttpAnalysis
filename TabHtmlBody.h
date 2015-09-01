@@ -32,4 +32,5 @@ public:
 	CEdit edtSearch;
 	void FindTextHtml();
 	void ColorMarkSearch(long start, long end);
+	void ClearTextMark();
 };

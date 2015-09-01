@@ -162,7 +162,7 @@ void CTabHtmlBody::OnBnClickedbtnbodyget()
 	 //获取需要搜索的文本
 	 CString  filterStr;
 	 edtSearch.GetWindowTextW(filterStr);
-
+	 ClearTextMark();
 	 //定义FindTextW所需参数的结构体
 	 FINDTEXTEX ft;
 	 ft.chrg.cpMin = 0;
@@ -176,7 +176,7 @@ void CTabHtmlBody::OnBnClickedbtnbodyget()
 		 lPos = edtHtmlBody.FindTextW(FR_DOWN, &ft);
 		 if (-1 == lPos)
 			 break;
-		 //edtHtmlBody.SetSel(lPos,lPos+strlen);
+		 edtHtmlBody.SetSel(lPos,lPos+strlen);
 		 ColorMarkSearch(lPos, lPos + strlen);
 		 ft.chrg.cpMin = lPos + strlen;
 	 } while (true);
@@ -201,4 +201,22 @@ void CTabHtmlBody::OnBnClickedbtnbodyget()
 	 cf.crTextColor = RGB(0,0,0);
 	 cf.crBackColor = RGB(116,208,241);
 	 edtHtmlBody.SendMessage(EM_SETCHARFORMAT,SCF_SELECTION,(LPARAM)&cf);
+ }
+
+
+
+ /***********************************************************************************************************
+  * 程序作者：赵进军
+  * 函数功能：清除Edit  搜索框上一次的着色
+  * 参数说明：
+  * 注意事项：
+  * 修改日期：
+  ***********************************************************************************************************/
+ void CTabHtmlBody::ClearTextMark()
+ {
+	 CString temp;
+	 //获取上一次历史结果
+	 edtHtmlBody.GetWindowTextW(temp);
+	 //把上一次的历史结果进行赋值到Edit
+	 edtHtmlBody.SetWindowTextW(temp);
  }
