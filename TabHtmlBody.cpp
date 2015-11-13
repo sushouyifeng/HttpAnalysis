@@ -30,6 +30,8 @@ void CTabHtmlBody::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_RICHEDIT_Body, edtHtmlBody);
 	DDX_Control(pDX, IDC_EDIT_BodyFilter, edtSearch);
+	DDX_Control(pDX, IDC_COMBO_Bodyregular, cmbbRegStyle);
+	DDX_Control(pDX, IDC_EDIT_Body_MatchCount, edtMatchNumber);
 }
 
 
@@ -39,6 +41,8 @@ BEGIN_MESSAGE_MAP(CTabHtmlBody, CDialogEx)
 	ON_BN_CLICKED(IDC_btnBodySave, &CTabHtmlBody::OnBnClickedbtnbodysave)
 	ON_BN_CLICKED(IDC_btn_BodySearch, &CTabHtmlBody::OnBnClickedbtnBodysearch)
 	ON_BN_CLICKED(IDC_btnBodyGet, &CTabHtmlBody::OnBnClickedbtnbodyget)
+	ON_BN_CLICKED(IDC_btn_StockReg, &CTabHtmlBody::OnBnClickedbtnStockreg)
+	ON_CBN_SELCHANGE(IDC_COMBO_Bodyregular, &CTabHtmlBody::OnCbnSelchangeComboBodyregular)
 END_MESSAGE_MAP()
 
 
@@ -132,6 +136,8 @@ BOOL CTabHtmlBody::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 	InitRichEdit();
+
+	InitCommboxList();
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常:  OCX 属性页应返回 FALSE
 }
@@ -306,7 +312,7 @@ void CTabHtmlBody::ShowLineNum(HWND hEdit)
 	//获取字符高度，以英寸为单位，需要转换为磅。
 	CharHeight = CharFmt.yHeight / 15;
 	chHeight = CharHeight;
-	CharHeight = 2;
+	CharHeight = 3;
 
 	//设置显示行号的颜色
 	::SetTextColor(hdcCpb, 0x000000);
@@ -318,11 +324,58 @@ void CTabHtmlBody::ShowLineNum(HWND hEdit)
 	while (FirstLine <= LineCount)
 	{
 		::TextOut(hdcCpb, 1, CharHeight, countBuf, wsprintf(countBuf, L"%4u", FirstLine++));
-		CharHeight += chHeight + 3;
+		CharHeight += chHeight + 7;
 		if (CharHeight > ClientHeight)break;
 	}
 
 	//将已经画好的位图真正贴在RichEdit中
 	::BitBlt(hdcEdit, 0, 0, 40, ClientHeight, hdcCpb, 0, 0, SRCCOPY);
 	::DeleteDC(hdcCpb);
+}
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：常用正则表达式按钮
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+void CTabHtmlBody::OnBnClickedbtnStockreg()
+{
+	// TODO:  在此添加控件通知处理程序代码
+}
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：正则表达式匹配对象选项发生改变
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+void CTabHtmlBody::OnCbnSelchangeComboBodyregular()
+{
+	// TODO:  在此添加控件通知处理程序代码
+}
+
+
+
+/***********************************************************************************************************
+ * 程序作者：赵进军
+ * 函数功能：初始化正则表达式的选择项
+ * 参数说明：
+ * 注意事项：
+ * 修改日期：
+ ***********************************************************************************************************/
+void CTabHtmlBody::InitCommboxList()
+{
+	int index = 0;
+	cmbbRegStyle.InsertString(index, L"Boost");
+	cmbbRegStyle.SetItemData(index++, 1);
+	cmbbRegStyle.InsertString(index, L"ALT");
+	cmbbRegStyle.SetItemData(index++, 2);
+	cmbbRegStyle.SetCurSel(0);
 }

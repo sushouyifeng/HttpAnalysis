@@ -35,4 +35,9 @@ public:
 	void ClearTextMark();
 	static long SubEditProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 	static	void ShowLineNum(HWND hEdit);
+	CComboBox cmbbRegStyle;
+	CEdit edtMatchNumber;
+	afx_msg void OnBnClickedbtnStockreg();
+	afx_msg void OnCbnSelchangeComboBodyregular();
+	void InitCommboxList();
 };
